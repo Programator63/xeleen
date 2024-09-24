@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import {RouterLink, RouterView} from "#vue-router";
 
-const AsideOpen = ref(false);
+
+const AsideOpen = ref(useCookie('asideOpen', {
+  default: () => {
+    [false]
+  }
+}) || false)
 
 
 const pages = ref([
@@ -24,20 +28,21 @@ const route = useRoute()
 
 <template>
   <aside class="flex gap-5 flex-col  items-center justify-between p-2 bg-slate-800 rounded-xl transition-all"
-         :class="(AsideOpen) ? 'w-[250px]' : 'w-[65px]'">
+         :class="(AsideOpen) ? 'min-w-[250px] w-[250px]' : 'min-w-[55px] w-[55px]'">
     <div>
       <NuxtLink to="/" class="text-white font-bold text-2xl">
-        {{(AsideOpen) ? "Xeleen" : "X"}}
+        {{ (AsideOpen) ? "Xeleen" : "X" }}
       </NuxtLink>
 
     </div>
 
-    <div class="flex flex-col gap-3 w-full grow">
+    <div class="flex flex-col gap-3 w-full grow items-center relative  ">
       <template v-for="page in pages">
         <NuxtLink :to="page.path"
                   class="rounded-lg h-[40px] flex  items-center transition-all gap-1 hover:text-white"
+                  :data-title="page.title"
                   :class="
-                  (AsideOpen) ? 'w-full justify-start p-2' : 'w-[40px] justify-center p-0.5',
+                  (AsideOpen) ? 'w-full justify-start p-2' : 'w-[40px] link justify-center p-0.5',
                   (route.path === page.path)? 'bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white font-medium':'bg-gray-700 shadow-none text-gray-400'
           ">
           <icon :name="(route.path === page.path)? page.iconActive :page.icon" size="24px"/>
@@ -53,14 +58,38 @@ const route = useRoute()
             :class="
                   (AsideOpen) ? 'w-full bg-indigo-500 shadow-lg shadow-indigo-500/50 text-white font-medium justify-start p-2' : 'w-[40px] bg-gray-700 shadow-none text-gray-400 justify-center p-0.5'
           ">
-      <icon name="i-solar:round-arrow-right-bold" size="24px" class="transition-all" :class="(AsideOpen) ? 'rotate-180' : ''"/>
+      <icon name="i-solar:round-arrow-right-bold" size="24px" class="transition-all"
+            :class="(AsideOpen) ? 'rotate-180' : ''"/>
       <span v-if="AsideOpen">
-          {{(AsideOpen) ? "Close" : "Open"}}
+          {{ (AsideOpen) ? "Close" : "Open" }}
       </span>
     </button>
   </aside>
 </template>
 
 <style scoped>
+.link{
+  z-index: 2;
+  transition: font-weight 0s !important;
+}
+.link::after{
+  content: attr(data-title);
+  position: absolute;
+  left: -150px;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0;
+  transition: all .1s ease-in-out;
+  z-index: 1;
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.link:hover::after{
+  left: 50px;
+  opacity: 1;
+}
 
 </style>
