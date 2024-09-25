@@ -3,7 +3,7 @@
 </script>
 
 <template>
-marrketplace
+  card
 </template>
 
 <style scoped>

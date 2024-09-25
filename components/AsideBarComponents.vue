@@ -17,8 +17,8 @@ const pages = ref([
   },
   {
     title: 'Marketplace',
-    icon: 'i-solar:shop-bold-duotone',
-    iconActive: 'i-solar:shop-bold',
+    icon: 'i-solar:smart-speaker-minimalistic-bold-duotone',
+    iconActive: 'i-solar:smart-speaker-minimalistic-bold',
     path: '/marketplace',
   }
 ])
@@ -27,7 +27,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <aside class="flex gap-5 flex-col  items-center justify-between p-2 bg-slate-800 rounded-xl transition-all"
+  <aside class="flex gap-5 flex-col  items-center justify-between p-2 bg-slate-800 rounded-xl transition-all z-10"
          :class="(AsideOpen) ? 'min-w-[250px] w-[250px]' : 'min-w-[55px] w-[55px]'">
     <div>
       <NuxtLink to="/" class="text-white font-bold text-2xl">
@@ -69,18 +69,18 @@ const route = useRoute()
 
 <style scoped>
 .link{
-  z-index: 2;
+  z-index: 10;
   transition: font-weight 0s !important;
 }
 .link::after{
   content: attr(data-title);
   position: absolute;
-  left: -150px;
+  left: 50px;
   user-select: none;
   pointer-events: none;
   opacity: 0;
   transition: all .1s ease-in-out;
-  z-index: 1;
+
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
   border-radius: 10px;
@@ -88,8 +88,21 @@ const route = useRoute()
 }
 
 .link:hover::after{
-  left: 50px;
-  opacity: 1;
+
+  animation: Link 0.2s ease-in-out forwards;
+
+}
+
+@keyframes Link{
+  0%{
+    opacity: 0;
+
+    z-index: -10;
+  }
+  100% {
+    opacity: 1;
+    z-index: 999;
+  }
 }
 
 </style>
