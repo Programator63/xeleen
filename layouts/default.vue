@@ -9,17 +9,14 @@ import HeaderComponents from "~/components/HeaderComponents.vue";
     <main>
       <HeaderComponents/>
       <div class="content">
-        <NuxtPage/>
+        <slot />
       </div>
-
     </main>
   </div>
-
-
 </template>
 
 <style scoped>
-main{
+main {
   width: 100%;
 }
 </style>

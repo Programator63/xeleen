@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import MainLayout from "~/layout/MainLayout.vue";
 </script>
 
 <template>
-  <MainLayout >
-    <NuxtPage/>
-  </MainLayout>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 
+
 <style>
-body, #__nuxt > div  {
+body, #__nuxt > div {
   width: 100%;
   min-height: 100dvh;
   color: #fff;
