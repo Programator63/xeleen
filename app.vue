@@ -10,7 +10,7 @@
 
 
 <style>
-body, #__nuxt > div {
+body {
   width: 100%;
   min-height: 100dvh;
   color: #fff;

@@ -30,7 +30,7 @@ const route = useRoute()
   <aside class="flex gap-5 flex-col  items-center justify-between p-2 bg-slate-800 rounded-xl transition-all z-10"
          :class="(AsideOpen) ? 'min-w-[250px] w-[250px] overflow-hidden' : 'min-w-[55px] w-[55px]'">
     <div>
-      <NuxtLink to="/" class="text-white font-bold text-2xl"  :class="(AsideOpen) ? 'w-full' : 'w-[40px]'">
+      <NuxtLink to="/public" class="text-white font-bold text-2xl" :class="(AsideOpen) ? 'w-full' : 'w-[40px]'">
         {{ (AsideOpen) ? "Xeleen" : "X" }}
       </NuxtLink>
 

@@ -23,7 +23,9 @@ module.exports = {
         './error.vue',
     ],
     theme: {
+
         extend: {
+
             colors: {
                 'main': 'var(--bg-main)',
                 'main-opacity': withOpacity('--bg-main-opacity'),

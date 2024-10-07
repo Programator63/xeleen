@@ -58,6 +58,6 @@ const onMouseMove = () => {
 
 <template>
   <div ref="containerRef">
-    <slot></slot>
+    <slot/>
   </div>
 </template>
