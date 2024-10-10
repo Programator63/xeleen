@@ -3,11 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "npx prisma generate && nuxt build",
     "dev": "nuxt dev --host",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "npx prisma generate && nuxt prepare"
   },
   "dependencies": {
     "@nuxt/icon": "^1.5.1",
@@ -23,6 +23,7 @@
     "@iconify-json/solar": "^1.2.0",
     "@pinia/nuxt": "^0.5.5",
     "@prisma/client": "^5.20.0",
-    "@prisma/nuxt": "^0.0.35"
+    "@prisma/nuxt": "^0.0.35",
+    "prisma": "^5.20.0"
   }
 }
