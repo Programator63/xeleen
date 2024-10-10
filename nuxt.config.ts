@@ -6,15 +6,18 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/icon',
     '@nuxt/ui',
-    '@pinia/nuxt',
-    '@prisma/nuxt',
-    'nuxt-auth-utils'
+    'nuxt-auth-utils',
+    '@prisma/nuxt'
   ],
   prisma: {
     autoSetupPrisma: true,
   },
   colorMode: {
     preference: 'no-preference',
-  }
-
+  },
+  build: {
+    rollupOptions: {
+      external: ['@prisma/nuxt'],
+    },
+  },
 })
