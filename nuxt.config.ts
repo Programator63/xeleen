@@ -13,11 +13,7 @@ export default defineNuxtConfig({
     colorMode: {
         preference: 'no-preference',
     },
-    build: {
-        rollupOptions: {
-            external: [
-
-            ]
-        }
+    ui: {
+        global: true
     }
 })
