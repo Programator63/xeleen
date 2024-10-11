@@ -1,27 +1,23 @@
-  // https://nuxt.com/docs/api/configuration/nuxt-config
-  export default defineNuxtConfig({
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
-    devtools: { enabled: true },
-
+    devtools: {enabled: true},
+    css: ['~/assets/css/main.css'],
     modules: [
-      '@nuxt/icon',
-      '@nuxt/ui',
-      'nuxt-auth-utils',
-      '@prisma/nuxt'
+        '@nuxt/ui',
+        '@prisma/nuxt'
     ],
     prisma: {
-      autoSetupPrisma: true,
-      migrate: {
-        enabled: true,
-        mode: 'deploy', // Set the mode to deploy for non-interactive environment
-      },
+        autoSetupPrisma: true,
     },
     colorMode: {
-      preference: 'no-preference',
+        preference: 'no-preference',
     },
     build: {
-      rollupOptions: {
-        external: ['@prisma/nuxt'],
-      },
-    },
-  })
+        rollupOptions: {
+            external: [
+
+            ]
+        }
+    }
+})
