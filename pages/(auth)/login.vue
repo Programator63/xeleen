@@ -30,11 +30,11 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 </script>
 
 <template>
-  <main class="bg-slate-800 rounded-xl p-2 form">
+  <main class="bg-gray-100 dark:bg-slate-800 rounded-xl p-2 form">
 
 
     <button @click="$router.back()"
-            class="hover:shadow-md outline-2 outline-indigo-500 hover:bg-indigo-500 hover:shadow-indigo-500/50 transition-all text-gray-400 hover:text-white font-medium px-2 py-1 rounded-lg">
+            class="transition-all text-gray-400 hover:text-black dark:hover:text-white font-medium px-2 py-1 rounded-lg">
       Back
     </button>
     <p class="text-center text-2xl font-bold">

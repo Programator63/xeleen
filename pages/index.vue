@@ -41,13 +41,13 @@ const cards = [
 </script>
 
 <template>
-  <div class="preview">
+  <div class="preview relative">
 
 
-    <p class="title z-10">
+    <p class="z-10 text-9xl font-bold mb-8">
       Xeleen
     </p>
-    <p class="subtitle z-10">
+    <p class="z-10 text-xl text-gray-700 dark:text-gray-400 mb-12">
       Transforming Ideas into Reality: Digital Products and Services Marketplace
     </p>
     <NuxtLink to="/register"
@@ -55,11 +55,11 @@ const cards = [
       Get Started
     </NuxtLink>
     <div
-        class="-z-10 pointer-events-none absolute inset-0 bg-center bg-grid-white/10 bg-grid-16 [mask-image:radial-gradient(white,transparent_85%)]">
+        class="-z-10 pointer-events-none absolute inset-0 bg-center bg-grid-black/10 dark:bg-grid-white/10 bg-grid-16 [mask-image:radial-gradient(black,transparent_85%)] dark:[mask-image:radial-gradient(white,transparent_85%)]">
 
     </div>
     <div
-        class="-z-10 absolute -top-8 left-1/2 size-72 -translate-x-1/2 rounded-full bg-indigo-500/25 blur-[120px] lg:-top-8 lg:size-[32rem] lg:blur-[200px]"></div>
+        class="-z-10 absolute -top-8 left-1/2 size-72 -translate-x-1/2 rounded-full bg-indigo-500/40 dark:bg-indigo-500/25 blur-[120px] lg:-top-8 lg:size-[32rem] lg:blur-[200px]"></div>
   </div>
 
   <section>
@@ -67,16 +67,16 @@ const cards = [
       <template v-for="card in cards">
         <SpotlightCard>
           <div
-              class="h-full relative z-20 overflow-hidden flex-1 flex flex-col rounded-[inherit] divide-y divide-gray-800 bg-gray-900 hover:bg-opacity-90 transition-[background-opacity]">
+              class="h-full relative z-20 overflow-hidden flex-1 flex flex-col rounded-[inherit] divide-y divide-gray-200 bg-gray-100 dark:divide-gray-800  dark:bg-gray-900 hover:bg-opacity-95 dark:hover:bg-opacity-90 transition-[background-opacity]">
             <div class="gap-x-8 gap-y-4 rounded-xl flex-1 flex flex-col px-4 py-5 sm:p-6">
               <div class="">
                 <div class="mb-2 pointer-events-none">
-                  <icon :name="card.icon" class="w-8 h-8 flex-shrink-0 text-white"></icon>
+                  <icon :name="card.icon" class="w-8 h-8 flex-shrink-0"></icon>
                 </div>
-                <p class="text-white text-base font-bold truncate">
+                <p class="text-base font-bold truncate">
                   {{ card.title }}
                 </p>
-                <div class="text-[15px] text-gray-400 mt-1">
+                <div class="text-[15px] text-gray-700 dark:text-gray-400 mt-1">
                   {{ card.text }}
                 </div>
               </div>
@@ -101,16 +101,4 @@ const cards = [
   position: relative;
 }
 
-.preview .title {
-  font-size: 8rem;
-  font-weight: 900;
-}
-
-.preview .subtitle {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.75);
-
-  margin-bottom: 5rem;
-}
 </style>

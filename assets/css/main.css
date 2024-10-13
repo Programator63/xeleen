@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
     width: 100%;
     min-height: 100dvh;
+
+}
+
+html.dark body{
     color: #fff;
     background: #0f172a;
 }
