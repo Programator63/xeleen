@@ -1,8 +1,12 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Login',
+
   layout: 'empty'
 })
+useHead({
+  title: 'Login',
+})
+
 const route = useRoute()
 
 

@@ -10,6 +10,11 @@ export default defineNuxtConfig({
       '@nuxt/icon',
       '@nuxt/scripts'
     ],
+    icon: {
+        serverBundle: {
+            collections: ['heroicons'],
+        }
+    },
     prisma: {
         autoSetupPrisma: true,
     },
