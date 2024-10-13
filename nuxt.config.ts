@@ -10,6 +10,7 @@ export default defineNuxtConfig({
       '@nuxt/icon',
       '@nuxt/scripts'
     ],
+    ssr: true,
     icon: {
         serverBundle: {
             collections: ['heroicons'],

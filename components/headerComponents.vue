@@ -66,7 +66,6 @@ function handleScroll() {
               aria-label="Theme"
               @click="isDark = !isDark"
           />
-
         <NuxtLink to="/login" class="px-3 py-1 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full transition-all linear">
           Sign in
         </NuxtLink>
