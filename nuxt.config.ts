@@ -4,9 +4,11 @@ export default defineNuxtConfig({
     devtools: {enabled: true},
     css: ['~/assets/css/main.css'],
     modules: [
-        '@prisma/nuxt',
-        '@nuxt/ui',
-        '@nuxtjs/color-mode'
+      '@prisma/nuxt',
+      '@nuxt/ui',
+      '@nuxtjs/color-mode',
+      '@nuxt/icon',
+      '@nuxt/scripts'
     ],
     prisma: {
         autoSetupPrisma: true,

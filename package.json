@@ -12,6 +12,8 @@
     "prisma:generate": "prisma generate"
   },
   "dependencies": {
+    "@nuxt/icon": "^1.5.6",
+    "@nuxt/scripts": "^0.9.4",
     "@nuxt/ui": "^2.18.7",
     "@prisma/nuxt": "^0.0.35",
     "mini-svg-data-uri": "^1.4.4",
