@@ -27,8 +27,5 @@ export default defineNuxtConfig({
     },
     ui: {
         global: true
-    },
-    nitro: {
-        preset: 'versel'
     }
 })
