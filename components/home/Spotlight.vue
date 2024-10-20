@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {ref, onMounted, onBeforeUnmount, reactive, watch} from 'vue'
-import useMousePosition from '~/components/home/utils/MousePosition'
+import useMousePosition from '~/utils/MousePosition'
 
 const containerRef = ref<HTMLCanvasElement | null>(null)
 const mousePosition = useMousePosition()

@@ -4,13 +4,14 @@ export default defineNuxtConfig({
     devtools: {enabled: true},
     css: ['~/assets/css/main.css'],
     modules: [
-      '@prisma/nuxt',
       '@nuxt/ui',
-      '@nuxtjs/color-mode',
-      '@nuxt/icon',
-      '@nuxt/scripts',
       'nuxt-auth-utils'
     ],
+    routeRules: {
+        '/': { prerender: true },
+        '/login': { prerender: true },
+        '/register': { prerender: true },
+    },
     ssr: true,
     icon: {
         serverBundle: {
@@ -26,5 +27,8 @@ export default defineNuxtConfig({
     },
     ui: {
         global: true
+    },
+    nitro: {
+        preset: 'versel'
     }
 })

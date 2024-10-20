@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
 
-import Spotlight from '../components/home/Spotlight.vue'
-import SpotlightCard from '../components/home/SpotlightCard.vue'
-
+import useMousePosition from '~/utils/MousePosition'
+import Spotlight from "~/components/home/Spotlight.vue";
+import SpotlightCard from "~/components/home/SpotlightCard.vue";
 
 const cards = [
   {

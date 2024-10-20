@@ -2,7 +2,7 @@
 definePageMeta({
   layout: 'empty',
   middleware: [
-    'un-auth'
+    'un-auth',
   ]
 })
 useHead({
@@ -12,9 +12,6 @@ useHead({
 
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '#ui/types'
-
-const toast = useToast()
-
 
 const schema = object({
   name: string()
@@ -32,7 +29,7 @@ const schema = object({
       .required('Required')
 })
 type Schema = InferType<typeof schema>
-
+const toast = useToast()
 const state = reactive({
   name: undefined,
   lastname: undefined,

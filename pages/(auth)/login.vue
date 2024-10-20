@@ -2,7 +2,7 @@
 definePageMeta({
   layout: 'empty',
   middleware: [
-      'un-auth'
+      'un-auth',
   ]
 })
 useHead({
@@ -13,9 +13,6 @@ useHead({
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '#ui/types'
 
-const toast = useToast()
-
-
 const schema = object({
   email: string().email('Invalid email').required('Required'),
   password: string()
@@ -23,6 +20,7 @@ const schema = object({
       .required('Required')
 })
 type Schema = InferType<typeof schema>
+const toast = useToast()
 
 const state = reactive({
   email: undefined,
@@ -43,15 +41,17 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       title: error.value.statusMessage,
       color: "red",
     })
+  } else{
+    toast.add({
+      title: data.value.text,
+      color: "green",
+    })
+
+    await location.reload()
   }
 
 
-  toast.add({
-    title: data.value.text,
-    color: "green",
-  })
 
- await location.reload()
 }
 
 

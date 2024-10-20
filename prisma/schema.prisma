@@ -17,10 +17,10 @@ datasource db {
 model users {
   id        Int      @id @default(autoincrement())
   email     String   @unique
-  login     String?   @unique
+  login     String?  @unique
   name      String?
   last_name String?
-  access    Json?     @default("{\"ban\": 0}")
+  access    Json?    @default("{\"ban\": 0}")
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
