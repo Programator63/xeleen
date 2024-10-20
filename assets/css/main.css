@@ -10,6 +10,6 @@ body {
 }
 
 html.dark body{
-    color: #fff;
+    color: #fff !important;
     background: #0f172a;
 }

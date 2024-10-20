@@ -1,17 +1,20 @@
 <script setup lang="ts">
 definePageMeta({
-
-  layout: 'empty'
+  layout: 'empty',
+  middleware: [
+      'un-auth'
+  ]
 })
 useHead({
   title: 'Login',
 })
 
-const route = useRoute()
-
 
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '#ui/types'
+
+const toast = useToast()
+
 
 const schema = object({
   email: string().email('Invalid email').required('Required'),
@@ -26,21 +29,36 @@ const state = reactive({
   password: undefined
 })
 
+
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  // Do something with event.data
-  console.log(event.data)
+
+  const {data, status, error} = await useFetch("/api/user/auth/login",{
+        method: 'POST',
+        body: {... event.data}
+      }
+  )
+  if(status.value != "success") {
+    state.password = ""
+    return toast.add({
+      title: error.value.statusMessage,
+      color: "red",
+    })
+  }
+
+
+  toast.add({
+    title: data.value.text,
+    color: "green",
+  })
+
+ await location.reload()
 }
+
 
 </script>
 
 <template>
-  <main class="bg-gray-100 dark:bg-slate-800 rounded-xl p-2 form">
-
-
-    <button @click="$router.back()"
-            class="transition-all text-gray-400 hover:text-black dark:hover:text-white font-medium px-2 py-1 rounded-lg">
-      Back
-    </button>
+  <main class="bg-gray-100 dark:bg-slate-800 rounded-xl p-2 pt-5 form">
     <p class="text-center text-2xl font-bold">
       Login in
     </p>
@@ -54,14 +72,13 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       </UFormGroup>
 
       <div>
-        <UButton size="xl" block type="submit" class="hover:shadow-md bg-indigo-500 hover:shadow-indigo-500/50 transition-all text-gray-400 hover:text-white font-medium px-2 py-3 rounded-lg">
+        <UButton size="xl" color="indigo" block type="submit" class="hover:shadow-md bg-indigo-500 hover:shadow-indigo-500/50 transition-all text-gray-400 hover:text-white font-medium px-2 py-3 rounded-lg">
           Login in
         </UButton>
         <p class="text-center mt-2">
           Or  <NuxtLink to="/register" class="text-indigo-500">sign up</NuxtLink>
         </p>
       </div>
-
     </UForm>
 
   </main>

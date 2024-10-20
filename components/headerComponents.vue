@@ -56,7 +56,6 @@ function handleScroll() {
         <template v-for="page in pages">
           <NuxtLink :to="page.path" class="py-1 px-2 hover:px-3 hover:bg-white dark:hover:bg-gray-800 rounded-full linear text-sm/6 font-medium text-gray-700 hover:text-black dark:text-gray-200 dark:hover:text-white transition-all ease-in-out">{{page.title}}</NuxtLink>
         </template>
-
       </div>
       <div class="flex items-center justify-end lg:flex-1">
           <UButton
@@ -67,7 +66,7 @@ function handleScroll() {
               @click="isDark = !isDark"
           />
         <NuxtLink to="/login" class="px-3 py-1 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full transition-all linear">
-          Sign in
+          Login in
         </NuxtLink>
       </div>
     </header>

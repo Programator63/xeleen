@@ -8,7 +8,8 @@ export default defineNuxtConfig({
       '@nuxt/ui',
       '@nuxtjs/color-mode',
       '@nuxt/icon',
-      '@nuxt/scripts'
+      '@nuxt/scripts',
+      'nuxt-auth-utils'
     ],
     ssr: true,
     icon: {

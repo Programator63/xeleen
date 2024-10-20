@@ -4,7 +4,7 @@
 
 <template>
 <footer class="container mx-auto py-5">
-  By <NuxtLink to="https://vk.com/programator63">programator</NuxtLink>
+  By <NuxtLink target="_blank" to="https://vk.com/programator63">programator</NuxtLink>
 </footer>
 </template>
 
