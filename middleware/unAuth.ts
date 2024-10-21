@@ -1,6 +1,6 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
     const {user} = useUserSession()
     if(user.value) {
-        return navigateTo('/profile')
+        return navigateTo('/profile', {redirectCode: 301})
     }
 })
