@@ -10,8 +10,8 @@ useHead({
 })
 
 
-import { object, string, type InferType } from 'yup'
-import type { FormSubmitEvent } from '#ui/types'
+import {object, string, type InferType} from 'yup'
+import type {FormSubmitEvent} from '#ui/types'
 
 const schema = object({
   name: string()
@@ -37,24 +37,25 @@ const state = reactive({
   password: undefined,
   passwordRepetition: undefined,
 })
-
+const blockButton = ref(false)
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
 
-  if(state.password != state.passwordRepetition){
+  if (state.password != state.passwordRepetition) {
     state.passwordRepetition = ""
     return toast.add({
       title: "passwords don't match!",
       color: "red",
     })
   }
-
-  const {data, status, error} = await useFetch("/api/user/auth/register",{
+  blockButton.value = true
+  const {data, status, error} = await useFetch("/api/user/auth/register", {
         method: 'POST',
-        body: {... event.data}
+        body: {...event.data}
       }
   )
-  if(status.value != "success") {
+  blockButton.value = false
+  if (status.value != "success") {
     return toast.add({
       title: error.value.statusMessage,
       color: "red",
@@ -77,7 +78,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     <UForm :schema="schema" :state="state" class="p-5" @submit="onSubmit">
       <div class="flex gap-x-4">
         <UFormGroup label="Name" name="name" size="xl" class="w-full" required>
-          <UInput v-model="state.name" />
+          <UInput v-model="state.name"/>
         </UFormGroup>
         <UFormGroup label="Last name" name="lastname" size="xl" class="w-full" required>
           <UInput v-model="state.lastname"/>
@@ -96,11 +97,13 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       </UFormGroup>
 
       <div class="mt-6">
-        <UButton size="xl" color="indigo" block type="submit" class="hover:shadow-md bg-indigo-500 hover:shadow-indigo-500/50 transition-all text-gray-400 hover:text-white font-medium px-2 py-3 rounded-lg">
+        <UButton size="xl" color="indigo" block type="submit" :loading="blockButton"
+                 class="hover:shadow-md bg-indigo-500 hover:shadow-indigo-500/50 transition-all text-gray-400 hover:text-white font-medium px-2 py-3 rounded-lg">
           Sign up
         </UButton>
         <p class="text-center mt-2">
-          Or  <NuxtLink to="/login" class="text-indigo-500">login in</NuxtLink>
+          Or
+          <NuxtLink to="/login" class="text-indigo-500">login in</NuxtLink>
         </p>
       </div>
     </UForm>
@@ -120,13 +123,14 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   bottom: 0;
   margin: auto;
 }
-form{
+
+form {
   display: flex;
   gap: 1rem;
   flex-direction: column;
 }
 
-form button{
+form button {
   color: white !important;
 }
 </style>

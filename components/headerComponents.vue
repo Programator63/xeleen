@@ -1,16 +1,17 @@
 <script setup lang="ts">
 
+import {$fetch} from "ofetch/node";
+
+const {clear} = useUserSession()
 const colorMode = useColorMode()
 const isDark = computed({
-  get () {
+  get() {
     return colorMode.value === 'dark'
   },
-  set () {
+  set() {
     colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
   }
 })
-
-
 
 const pages = ref([
   {
@@ -26,6 +27,14 @@ const pages = ref([
     path: '/marketplace',
   }
 ])
+
+const {$user} = useNuxtApp()
+
+async function logout() {
+  await clear()
+  await $fetch("/api/user/logout")
+  location.reload()
+}
 
 const atTopOfPage = ref(true)
 
@@ -43,18 +52,22 @@ function handleScroll() {
 </script>
 
 <template>
-  <div :class="{ 'backdrop-blur-sm bg-gradient-to-b from-gray-600/5': !atTopOfPage }" class="flex justify-center w-full fixed top-0 z-50">
-    <header  class="py-3 container flex justify-between items-center ">
+  <div :class="{ 'backdrop-blur-sm bg-gradient-to-b from-gray-600/5': !atTopOfPage }"
+       class="flex justify-center w-full fixed top-0 z-50">
+    <header class="py-3 container flex justify-between items-center ">
       <div class="lg:flex-1">
         <NuxtLink to="/" class="logo font-bold text-2xl ">
-
           Xeleen
         </NuxtLink>
       </div>
 
-      <div class="flex justify-around px-1 py-1 ring-2 ring-slate-200 dark:ring-slate-800 bg-gray-100/95 dark:bg-gray-900/90 rounded-full lg:flex gap-x-3">
+      <div
+          class="flex justify-around px-1 py-1 ring-2 ring-slate-200 dark:ring-slate-800 bg-gray-100/95 dark:bg-gray-900/90 rounded-full lg:flex gap-x-3">
         <template v-for="page in pages">
-          <NuxtLink :to="page.path" class="py-1 px-2 hover:px-3 hover:bg-white dark:hover:bg-gray-800 rounded-full linear text-sm/6 font-medium text-gray-700 hover:text-black dark:text-gray-200 dark:hover:text-white transition-all ease-in-out">{{page.title}}</NuxtLink>
+          <NuxtLink :to="page.path" active-class="bg-white dark:bg-gray-800"
+                    class="py-1 px-2 hover:px-3 hover:bg-white dark:hover:bg-gray-800 rounded-full linear text-sm/6 font-medium text-gray-700 hover:text-black dark:text-gray-200 dark:hover:text-white transition-all ease-in-out">
+            {{ page.title }}
+          </NuxtLink>
         </template>
       </div>
       <div class="flex items-center justify-end lg:flex-1">
@@ -67,12 +80,38 @@ function handleScroll() {
               @click="isDark = !isDark"
           />
           <template #fallback>
-            <div class="w-8 h-8" />
+            <div class="w-8 h-8"/>
           </template>
         </ClientOnly>
-        <NuxtLink to="/login" class="px-3 py-1 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full transition-all linear">
-          Login in
-        </NuxtLink>
+
+        <template v-if="$user">
+
+          <UPopover :popper="{ placement: 'bottom-end' }">
+            <UButton color="white" :label="$user.name"/>
+
+            <template #panel>
+              <div class="p-4 flex flex-col gap-y-2">
+                <NuxtLink to="/profile">
+                  profile
+                </NuxtLink>
+                <NuxtLink to="/">
+                  Setting
+                </NuxtLink>
+                <button @click="logout">Logout</button>
+              </div>
+            </template>
+          </UPopover>
+
+
+        </template>
+        <template v-else>
+          <NuxtLink to="/login"
+                    class="px-3 py-1 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full transition-all linear">
+            Login in
+          </NuxtLink>
+        </template>
+
+
       </div>
     </header>
   </div>

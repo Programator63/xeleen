@@ -1,16 +1,14 @@
 import prisma from "~/lib/prisma";
+import {$fetch} from "ofetch/node";
 
 export default defineEventHandler(async (event) => {
 
 
     const session = await getUserSession(event)
 
-
-
     if(!session.user) {
-        return {}
+        return false
     }
-
 
     const userData = await prisma.users.findMany({
         where: {
@@ -21,7 +19,8 @@ export default defineEventHandler(async (event) => {
     const user = userData[0]
 
     if(!user) {
-        return {}
+        await $fetch("/api/user/logout")
+        return false
     }
     const {password,  updatedAt, ...result} = user
 

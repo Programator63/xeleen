@@ -1,9 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   layout: 'empty',
-  middleware: [
-      'un-auth',
-  ]
+  middleware: ["un-auth"]
 })
 useHead({
   title: 'Login',
@@ -27,14 +25,16 @@ const state = reactive({
   password: undefined
 })
 
-
+const blockButton = ref(false)
 async function onSubmit(event: FormSubmitEvent<Schema>) {
 
+  blockButton.value = true
   const {data, status, error} = await useFetch("/api/user/auth/login",{
         method: 'POST',
         body: {... event.data}
       }
   )
+  blockButton.value = false
   if(status.value != "success") {
     state.password = ""
     return toast.add({
@@ -72,7 +72,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       </UFormGroup>
 
       <div>
-        <UButton size="xl" color="indigo" block type="submit" class="hover:shadow-md bg-indigo-500 hover:shadow-indigo-500/50 transition-all text-gray-400 hover:text-white font-medium px-2 py-3 rounded-lg">
+        <UButton size="xl" color="indigo" block type="submit" :loading="blockButton" class="hover:shadow-md bg-indigo-500 hover:shadow-indigo-500/50 transition-all text-gray-400 hover:text-white font-medium px-2 py-3 rounded-lg">
           Login in
         </UButton>
         <p class="text-center mt-2">
