@@ -27,5 +27,8 @@ export default defineNuxtConfig({
     },
     ui: {
         global: true
-    }
+    },
+    alias: {
+        'string_decoder': 'string_decoder/',
+    },
 })
