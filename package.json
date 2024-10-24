@@ -15,6 +15,7 @@
     "@nuxt/icon": "^1.5.6",
     "@nuxt/scripts": "^0.9.4",
     "@nuxt/ui": "^2.18.7",
+    "aws-sdk": "^2.1691.0",
     "bcrypt": "^5.1.1",
     "mini-svg-data-uri": "^1.4.4",
     "nuxt": "^3.13.2",
