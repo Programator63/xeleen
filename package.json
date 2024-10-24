@@ -21,6 +21,7 @@
     "nuxt": "^3.13.2",
     "nuxt-auth-utils": "^0.4.4",
     "prisma": "^5.20.0",
+    "unenv": "^1.10.0",
     "util": "^0.12.5",
     "vue": "latest",
     "vue-router": "latest",
